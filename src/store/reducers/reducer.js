@@ -1,10 +1,14 @@
 import * as actionType from "../actions/actions"
 
+import {updateObject} from '../utility'
+
 const initState = {
     persons: []
 }
 
+//You can do data transforming logic here, before store the data
 const reducer = (state = initState, action) => {
+
 
     switch (action.type) {
         case actionType.ADD_PERSON:
@@ -15,15 +19,9 @@ const reducer = (state = initState, action) => {
                 age: action.personData.age
             }
 
-            return {
-                ...state,
-                persons: state.persons.concat(newPerson)
-            }
+            return updateObject(state, {persons: state.persons.concat(newPerson)})
         case actionType.REMOVE_PERSON:
-            return {
-                ...state,
-                persons: state.persons.filter(person => person.id !== action.personId)
-            }
+            return updateObject(state, {persons: state.persons.filter(person => person.id !== action.personId)})
     }
 
     return state
