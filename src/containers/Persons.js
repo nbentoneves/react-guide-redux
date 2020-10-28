@@ -3,10 +3,9 @@ import React, {Component} from 'react';
 import Person from '../components/Person/Person';
 import AddPerson from '../components/AddPerson/AddPerson';
 
-import {connect} from 'react-redux'
+import * as actionCreators from '../store/actions/index'
 
-import {addPerson} from "../store/actions/addAction"
-import {removePerson} from "../store/actions/removeAction"
+import {connect} from 'react-redux'
 
 class Persons extends Component {
 
@@ -34,8 +33,8 @@ const mapStateToProps = state => {
 
 const mapDispatchProps = dispatch => {
     return {
-        onAddedPerson: (name, age) => dispatch(addPerson({name: name, age: age})),
-        onRemovePerson: (id) => dispatch(removePerson(id))
+        onAddedPerson: (name, age) => dispatch(actionCreators.addPerson({name: name, age: age})),
+        onRemovePerson: (id) => dispatch(actionCreators.removePerson(id))
     }
 }
 
